@@ -6,5 +6,5 @@ export const RIGHT_PAYMENT_DELETE = 101404
 
 export const MODULE_NAME = "payment";
 
-export const PAYMENT_STATUS = [-3, -2, -1, 1, 2, 3, 4, 5];
+export const PAYMENT_STATUS = [-1, 1, 2, 3, 4, 5];
 export const PAYMENTS_TAB_VALUE = "paymentsTab"
