@@ -8,19 +8,21 @@ import {
 } from "@openimis/fe-core";
 import _ from "lodash";
 
-const PAYMENT_SUMMARIES_PROJECTION = (mm) => [
-  "uuid",
-  "id",
-  "requestDate",
-  "expectedAmount",
-  "receivedDate",
-  "receivedAmount",
-  "status",
-  "receiptNo",
-  "typeOfPayment",
-  "clientMutationId",
-  "validityTo",
-  // `paymentDetails{edges{node{premium${mm.getProjection("contribution.PremiumPicker.projection")}}}}`
+const PAYMENT_SUMMARIES_PROJECTION = mm =>
+[
+    "uuid",
+    "id",
+    "requestDate",
+    "expectedAmount",
+    "receivedDate",
+    "receivedAmount",
+    "status",
+    "receiptNo",
+    "paymentCode",
+    "typeOfPayment",
+    "clientMutationId",
+    "validityTo",
+    // `paymentDetails{edges{node{premium${mm.getProjection("contribution.PremiumPicker.projection")}}}}`
 ];
 const PAYMENT_FULL_PROJECTION = (mm) => [
   ...PAYMENT_SUMMARIES_PROJECTION(mm),

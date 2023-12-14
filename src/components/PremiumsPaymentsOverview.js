@@ -24,7 +24,7 @@ import DeletePaymentDialog from "./DeletePaymentDialog";
 import {
     RIGHT_PAYMENT_DELETE,
     RIGHT_PAYMENT_ADD,
- } from "../constants";
+} from "../constants";
 
 const styles = theme => ({
     paper: theme.paper.paper,
@@ -32,7 +32,7 @@ const styles = theme => ({
     paperHeaderAction: theme.paper.action,
     tableTitle: theme.table.title,
     fab: theme.fab,
-    disabled:{
+    disabled: {
         opacity: 0.4,
     }
 });
@@ -48,11 +48,11 @@ class PremiumsPaymentsOverview extends PagedDataHandler {
     componentDidMount() {
         this.setState({
             orderBy: "-requestDate",
-            deletePayment:  null,
+            deletePayment: null,
         }, e => this.query())
     }
 
-    addNewPayment = () =>  {
+    addNewPayment = () => {
         const {
             premium,
             modulesManager,
@@ -108,6 +108,7 @@ class PremiumsPaymentsOverview extends PagedDataHandler {
     }
 
     headers = [
+        "Payment Code",
         "payment.payment.typeOfPayment",
         "payment.payment.requestDate",
         "payment.payment.expectedAmount",
@@ -134,7 +135,7 @@ class PremiumsPaymentsOverview extends PagedDataHandler {
     ];
 
     confirmDelete = deletePayment => {
-        this.setState({ deletePayment,})
+        this.setState({ deletePayment, })
     }
 
     deletePaymentAction = (i) =>
@@ -145,6 +146,7 @@ class PremiumsPaymentsOverview extends PagedDataHandler {
 
     itemFormatters = () => {
         const formatters = [
+            p => p.paymentCode,
             p => p.typeOfPayment,
             p => formatDateFromISO(this.props.modulesManager, this.props.intl, p.requestDate),
             p => formatAmount(this.props.intl, p.expectedAmount),
@@ -211,8 +213,8 @@ class PremiumsPaymentsOverview extends PagedDataHandler {
                 {
                     button: <IconButton className={!premium ? classes.disabled : ""} onClick={this.addNewPayment}><AddIcon /></IconButton>,
                     tooltip: !premium ?
-                    formatMessage(intl, "payment", "addNewPayment.tooltip.selectPremium") :
-                    formatMessage(intl, "payment", "addNewPayment.tooltip")
+                        formatMessage(intl, "payment", "addNewPayment.tooltip.selectPremium") :
+                        formatMessage(intl, "payment", "addNewPayment.tooltip")
                 }
             )
         }
@@ -220,9 +222,9 @@ class PremiumsPaymentsOverview extends PagedDataHandler {
         return (
             <>
                 <DeletePaymentDialog
-                        payment={this.state.deletePayment}
-                        onConfirm={() => this.deletePayment()}
-                        onCancel={e => this.setState({ deletePayment: null })} />
+                    payment={this.state.deletePayment}
+                    onConfirm={() => this.deletePayment()}
+                    onCancel={e => this.setState({ deletePayment: null })} />
                 <Paper className={classes.paper}>
                     <Grid container alignItems="center" direction="row" className={classes.paperHeader}>
                         <Grid item xs={8}>

@@ -61,7 +61,7 @@ class PaymentSearcher extends Component {
             .filter(contrib => !!state.filters[contrib]['filter'])
             .map(contrib => state.filters[contrib]['filter']);
         if (!state.beforeCursor && !state.afterCursor) {
-        prms.push(`first: ${state.pageSize}`);
+            prms.push(`first: ${state.pageSize}`);
         }
         if (!!state.afterCursor) {
             prms.push(`after: "${state.afterCursor}"`);
@@ -79,6 +79,7 @@ class PaymentSearcher extends Component {
 
     headers = (filters) => {
         var h = [
+            "Code",
             "payment.payment.receivedDate",
             "payment.payment.requestDate",
             "payment.payment.expectedAmount",
@@ -117,7 +118,7 @@ class PaymentSearcher extends Component {
     }
 
     confirmDelete = deletePayment => {
-        this.setState({ deletePayment,})
+        this.setState({ deletePayment, })
     }
 
     deletePaymentAction = (i) =>
@@ -129,6 +130,7 @@ class PaymentSearcher extends Component {
     itemFormatters = () => {
         const { intl, modulesManager, rights, readOnly = false } = this.props;
         const formatters = [
+            p => p.paymentCode,
             p => formatDateFromISO(modulesManager, intl, p.receivedDate),
             p => formatDateFromISO(modulesManager, intl, p.requestDate),
             p => formatAmount(intl, p.expectedAmount),
