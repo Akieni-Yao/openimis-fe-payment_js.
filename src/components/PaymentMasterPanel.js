@@ -44,6 +44,15 @@ class PaymentMasterPanel extends FormPanel {
                         />
                     </Grid>
                     <Grid item xs={3} className={classes.item}>
+                        <TextInput
+                            module="payment"
+                            label="Payment Code"
+                            readOnly={true}
+                            value={!edited ? "" : edited.paymentCode}
+                        // onChange={p => this.updateAttribute('receiptNo', p)}
+                        />
+                    </Grid>
+                    <Grid item xs={3} className={classes.item}>
                         <PublishedComponent pubRef="core.DatePicker"
                             value={!edited ? "" : edited.requestDate}
                             module="payment"

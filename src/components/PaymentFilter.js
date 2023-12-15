@@ -111,6 +111,29 @@ class PaymentFilter extends Component {
             }
           />
           <ControlledField
+            module="contribution"
+            id="payment_code"
+            field={
+              <Grid item xs={3} className={classes.item}>
+                <TextInput
+                  module="payment"
+                  label="Payment Code"
+                  name="payment_code"
+                  value={this._filterValue("payment_code")}
+                  onChange={(v) =>
+                    this.debouncedOnChangeFilter([
+                      {
+                        id: "payment_code",
+                        value: v,
+                        filter: `paymentCode_Icontains: "${v}"`,
+                      },
+                    ])
+                  }
+                />
+              </Grid>
+            }
+          />
+          <ControlledField
             module="payment"
             id="PaymentFilter.status"
             field={
